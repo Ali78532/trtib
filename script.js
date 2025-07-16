@@ -1,5 +1,7 @@
 // script.js
 
+const correctSound = new Audio('Correct.wav');
+const wrongSound   = new Audio('Wrong.wav');
 
 // عناصر DOM
 const titleEl     = document.getElementById('quiz-title');
