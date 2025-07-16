@@ -194,6 +194,8 @@ h1#quiz-title {
   z-index: 200;
 }
 
+.video-container { position: relative; }
+
 /* دائرة تدور في المنتصف */
 #spinner {
   position: absolute;
