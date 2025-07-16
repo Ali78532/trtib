@@ -4,13 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>اختبار</title>
+  <!-- preload audio files -->
+  <link rel="preload" href="Correct.wav" as="audio" type="audio/wav" crossorigin>
+  <link rel="preload" href="Wrong.wav" as="audio" type="audio/wav" crossorigin>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-
+  <!-- عناصر صوت التحكّم -->
+  <audio id="correct-sound" src="Correct.wav" preload="auto"></audio>
+  <audio id="wrong-sound"   src="Wrong.wav"   preload="auto"></audio>
+  
   <!-- العنوان دائماً أعلى الشاشة -->
-  <h1 id="quiz-title">الإخبار عن الوقت</h1>
+    <h1 id="quiz-title">...</h1>
 
   <!-- شاشة الفيديو -->
   <div id="video-screen" class="video-screen">

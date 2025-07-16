@@ -1,7 +1,10 @@
 // script.js
 
+// أصوات النجاح/الخطأ
 const correctSound = new Audio('Correct.wav');
 const wrongSound   = new Audio('Wrong.wav');
+correctSound.load();
+wrongSound.load();
 
 // عناصر DOM
 const titleEl     = document.getElementById('quiz-title');
