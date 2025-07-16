@@ -175,3 +175,11 @@ function celebrate() {
     div.addEventListener('animationend', () => div.remove());
   }
 }  
+
+const spinner = document.getElementById('spinner');
+const iframe  = document.getElementById('quiz-video');
+
+// عندما ينتهي تحميل الـ iframe
+iframe.addEventListener('load', () => {
+  spinner.style.display = 'none';
+});
