@@ -136,7 +136,7 @@ h1#quiz-title {
 }
 .result.correct {
   color: #90ff90;
-  direction: ltr;        
+  direction: rtl;        
 }
 .result.incorrect {
   color: #ff9999;

@@ -52,7 +52,10 @@ startBtn.addEventListener('click', () => {
 });
 
 function initQuiz() {
-  let used = new Set(), score = 0, currentIdx, selectedWords = [];
+  let used = new Set(),
+      score = 0,
+      currentIdx,
+      selectedWords = [];
 
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -75,30 +78,32 @@ function initQuiz() {
     currentIdx = pickQuestion();
     if (currentIdx === null) {
       // نهاية الاختبار
-      timeEl.textContent    = '';
-      wordsEl.innerHTML     = '';
-      answerEl.style.display = 'none';
+      timeEl.textContent      = '';
+      wordsEl.innerHTML       = '';
+      answerEl.style.display  = 'none';
       checkBtn.classList.add('hidden');
       nextBtn.classList.add('hidden');
-      resultEl.textContent  = '';
-      scoreEl.textContent   = `درجتك ${score}`;
+      resultEl.textContent    = '';
+      scoreEl.textContent     = `درجتك ${score}`;
       scoreEl.classList.remove('hidden');
       footerText.style.display = 'block';
       return;
     }
     const q = times[currentIdx];
+
     // عرض السؤال كنص أو وقت
     if (q.question) {
       timeEl.innerHTML = q.question;
     } else {
       timeEl.textContent = `${String(q.hour).padStart(2,'0')}:${String(q.minute).padStart(2,'0')}`;
     }
+
     // تهيئة الواجهة
-    selectedWords = [];
+    selectedWords        = [];
     answerEl.style.display = '';
-    answerEl.textContent   = '';
-    resultEl.textContent   = '';
-    wordsEl.innerHTML       = '';
+    answerEl.textContent = '';
+    resultEl.textContent = '';
+    wordsEl.innerHTML     = '';
     checkBtn.classList.remove('hidden');
     nextBtn.classList.add('hidden');
     scoreEl.classList.add('hidden');
@@ -109,8 +114,11 @@ function initQuiz() {
       span.textContent = word;
       span.className   = 'word';
       span.onclick = () => {
-        if (span.classList.toggle('selected')) selectedWords.push(word);
-        else selectedWords = selectedWords.filter(w => w !== word);
+        if (span.classList.toggle('selected')) {
+          selectedWords.push(word);
+        } else {
+          selectedWords = selectedWords.filter(w => w !== word);
+        }
         answerEl.textContent = selectedWords.join(' ');
       };
       wordsEl.append(span);
@@ -123,10 +131,19 @@ function initQuiz() {
     answerEl.textContent = '';
   };
 
+  // دالة مقارنة مصفوفات
+  function arraysEqual(a, b) {
+    return a.length === b.length && a.every((v, i) => v === b[i]);
+  }
+
   checkBtn.onclick = () => {
-    const q   = times[currentIdx];
-    const ans = answerEl.textContent.trim();
-    if (ans === q.correct) {
+    const q = times[currentIdx];
+
+    // مصفوفة الإجابة الصحيحة
+    const correctTokens = q.correct.trim().split(/\s+/);
+
+    // مقارنة مصفوفة الكلمات المختارة مع مصفوفة الكلمات الصحيحة
+    if (arraysEqual(selectedWords, correctTokens)) {
       correctSound.play();
       resultEl.className   = 'result correct';
       resultEl.textContent = 'إجابتك صحيحة! أحسنت.';
@@ -137,13 +154,14 @@ function initQuiz() {
       resultEl.className   = 'result incorrect';
       resultEl.innerHTML   = `إجابتك خاطئة. الإجابة الصحيحة هي<br>${q.correct}`;
     }
+
     checkBtn.classList.add('hidden');
     nextBtn.classList.remove('hidden');
   };
 
   nextBtn.onclick = () => {
-    resultEl.textContent  = '';
-    answerEl.textContent  = '';
+    resultEl.textContent = '';
+    answerEl.textContent = '';
     selectedWords = [];
     document.querySelectorAll('.word.selected').forEach(s => s.classList.remove('selected'));
     showQuestion();
@@ -174,7 +192,7 @@ function celebrate() {
     document.body.append(div);
     div.addEventListener('animationend', () => div.remove());
   }
-}  
+}
 
 const spinner = document.getElementById('spinner');
 const iframe  = document.getElementById('quiz-video');
