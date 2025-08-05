@@ -70,13 +70,15 @@ h1#quiz-title {
 
 /* حقل الإجابة */
 .answer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   min-height: 50px;
   background-color: #1f1f1f;
   border: 2px dashed #616161;
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 20px;
-  text-align: left;
   direction: ltr;
   color: #ffffff;
 }
